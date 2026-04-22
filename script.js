@@ -18,6 +18,13 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
+document.addEventListener('click', (e) => {
+  if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !toggle.contains(e.target)) {
+    toggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  }
+});
+
 // Scroll reveal
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -100,9 +107,8 @@ if (form) {
     formNote.textContent = '';
     formNote.style.color = '';
 
-    // Replace YOUR_FORM_ID with your Formspree form ID
     try {
-      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const res = await fetch('https://formspree.io/f/xojykdbb', {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
